@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 
 const generarJWT = (uid) => {
-
+    console.log('gerararJWT - uid recibido: ' + uid)
     return new Promise( (resolve, reject) => {
 
         const payload = {
