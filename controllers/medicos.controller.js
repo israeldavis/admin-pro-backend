@@ -3,7 +3,7 @@ const { response } = require('express');
 const Medico  = require('../models/medico.model');
 
 const getMedicos = async (req, res = response) => {
-
+    
     const medicos = await Medico.find()
                         .populate('usuario', 'nombre img')
                         .populate('hospital', 'nombre img');
@@ -12,6 +12,28 @@ const getMedicos = async (req, res = response) => {
         ok: true,
         medicos
     })
+
+}
+
+const getMedicoById = async (req, res = response) => {
+    const id = req.params.id;
+    const medico = await Medico.findById(id)
+                        .populate('usuario', 'nombre img')
+                        .populate('hospital', 'nombre img');
+
+    try {
+        res.json({
+            ok: true,
+            medico
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.json({
+            ok: true,
+            msg: 'Hable con el administrador'
+        })
+    }
 
 }
 
@@ -119,5 +141,6 @@ module.exports = {
     getMedicos,
     crearMedico,
     actualizarMedico,
-    borrarMedico
+    borrarMedico,
+    getMedicoById
 }

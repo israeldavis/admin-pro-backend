@@ -9,9 +9,9 @@ const HospitalSchema = Schema({
         type: String
     },
     usuario: {
-        required: true,
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario',
+        required: true,
     }
 }, { collection: 'hospitales' });
 
